@@ -1,0 +1,58 @@
+{
+  "expo": {
+    "name": "Redome",
+    "slug": "redome-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1A3C5E"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "pt.redome.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Permite tirar fotografias da obra.",
+        "NSPhotoLibraryUsageDescription": "Permite seleccionar fotos da obra.",
+        "NSPhotoLibraryAddUsageDescription": "Permite guardar capturas da câmera ao vivo."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#1A3C5E"
+      },
+      "package": "pt.redome.app",
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "RECEIVE_BOOT_COMPLETED",
+        "VIBRATE"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/icon.png",
+          "color": "#1A3C5E",
+          "sounds": []
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Permite seleccionar fotos da obra.",
+          "cameraPermission": "Permite tirar fotografias da obra."
+        }
+      ]
+    ]
+  }
+}
