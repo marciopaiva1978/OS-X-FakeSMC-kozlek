@@ -10,7 +10,8 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
-import * as FileSystem from 'expo-file-system';
+// SDK 54 substituiu a API por File/Directory; usamos a via legada para minimizar alterações
+import * as FileSystem from 'expo-file-system/legacy';
 import * as Sharing from 'expo-sharing';
 import { db } from '../../config/firebase';
 import { useAuth } from '../../contexts/AuthContext';

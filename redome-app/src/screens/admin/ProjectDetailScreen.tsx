@@ -54,7 +54,7 @@ export const ProjectDetailScreen: React.FC<Props> = ({ route, navigation }) => {
         <TouchableOpacity
           key={action.label}
           style={styles.actionBtn}
-          onPress={() => navigation.navigate(action.screen as never, action.params as never)}
+          onPress={() => (navigation.navigate as (screen: string, params?: object) => void)(action.screen, action.params)}
           activeOpacity={0.8}
         >
           <Ionicons name={action.icon as React.ComponentProps<typeof Ionicons>['name']} size={22} color={COLORS.primary} />

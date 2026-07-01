@@ -1,5 +1,9 @@
 import { initializeApp, getApps } from 'firebase/app';
-import { initializeAuth, getReactNativePersistence, getAuth } from 'firebase/auth';
+import { initializeAuth, getAuth } from 'firebase/auth';
+// O mapa de "exports" do pacote firebase resolve sempre os tipos para a variante
+// browser, mesmo em RN (a implementação nativa existe em runtime, só falta o tipo)
+// @ts-expect-error — getReactNativePersistence existe em runtime, falta nos tipos do pacote "firebase"
+import { getReactNativePersistence } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
