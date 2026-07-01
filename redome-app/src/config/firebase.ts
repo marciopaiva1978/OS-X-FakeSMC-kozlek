@@ -17,17 +17,28 @@ const firebaseConfig = {
   appId: process.env.EXPO_PUBLIC_FIREBASE_APP_ID,
 };
 
+if (!firebaseConfig.apiKey) {
+  throw new Error(
+    'Configuração do Firebase em falta. Copie .env.example para .env e preencha com as credenciais do seu projecto Firebase (Definições do projecto → As suas apps).'
+  );
+}
+
 // Evita reinicializar se já existir uma instância (hot reload)
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 
-// getAuth() retorna a instância existente se initializeAuth já foi chamado (hot reload)
+// getAuth() retorna a instância existente se initializeAuth já foi chamado (hot reload);
+// qualquer outro erro (ex: credenciais inválidas) deve propagar-se, não ser escondido
 let auth: ReturnType<typeof getAuth>;
 try {
   auth = initializeAuth(app, {
     persistence: getReactNativePersistence(AsyncStorage),
   });
-} catch {
-  auth = getAuth(app);
+} catch (error) {
+  if ((error as { code?: string }).code === 'auth/already-initialized') {
+    auth = getAuth(app);
+  } else {
+    throw error;
+  }
 }
 export { auth };
 
